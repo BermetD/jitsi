@@ -17,7 +17,8 @@
   - name: Adding Repository 
     shell: echo 'deb https://download.jitsi.org stable/' >> /etc/apt/sources.list.d/jitsi-stable.list
   - name: Setting Key
-    shell: wget -qO -  https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
+    apt_key:
+      file: https://download.jitsi.org/jitsi-key.gpg.key
   - name: Upgrading apt
     apt:
       update_cache: true
