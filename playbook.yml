@@ -1,0 +1,31 @@
+---
+
+- hosts: jitsi
+  remote_user: root
+  tasks:
+  - name: Upgrading apt
+    apt:
+      update_cache: true
+      allow_unauthenticated: true
+      upgrade: true
+  - name: Installing certificates
+    apt:
+      name: ca-certificates
+      allow_unauthenticated: true
+      update_cache: false
+  
+  - name: Adding Repository 
+    shell: echo 'deb https://download.jitsi.org stable/' >> /etc/apt/sources.list.d/jitsi-stable.list
+  - name: Setting Key
+    shell: wget -qO -  https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
+  - name: Upgrading apt
+    apt:
+      update_cache: true
+      allow_unauthenticated: true
+      upgrade: true
+  - name: Installing Jitsi
+    apt:
+      name: jitsi-meet
+      allow_unauthenticated: true
+      update_cache: false
+  

@@ -1,0 +1,53 @@
+{
+    "name": "${envName}",
+    "description": "Jitsi",
+    "version": "1.0.0",
+    "author": "https://github.com/shahrizada",
+    "containers": [ {
+        "hostname": "${webContainerName}",
+        "template": "debian-stretch",
+        "peer-criteria": "HTTP-GROUP",
+        "size": "SMALL",
+        "port-mapping": [
+          {
+            "protocol": "http",
+            "domain": "${envName}.envs.subutai.cloud",
+            "internal-port": "80",
+            "external-port": "80"
+          }
+        ]
+      }
+    ],
+    "ansible-configuration": {
+      "source-url": "https://github.com/shahrizada/jitsi/archive/master.zip",
+      "ansible-playbook": "playbook.yml",
+      "groups": [
+          {
+              "name": "jitsi",
+              "hostnames": [
+                  "${webContainerName}"
+              ]
+          }
+      ]
+    },
+    "user-variables": {
+      "envName": {
+          "description": "Enter name of the environment",
+          "type": "string",
+          "default": "domain",
+          "validation": "[a-zA-Z0-9]+"
+      },
+      "webContainerName": {
+          "description": "Enter the container's hostname",
+          "type": "string",
+          "default": "hostname",
+          "validation": "[a-zA-Z0-9]+"
+      }
+    },
+    "peer-criteria": [ 
+      {
+        "name": "HTTP-GROUP",
+        "max-price": "25"
+      }
+    ]
+  }
