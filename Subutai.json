@@ -6,14 +6,14 @@
     "containers": [ {
         "hostname": "${webContainerName}",
         "template": "debian-stretch",
-        "peer-criteria": "HTTP-GROUP",
+        "peer-criteria": "HTTPS-GROUP",
         "size": "SMALL",
         "port-mapping": [
           {
-            "protocol": "http",
+            "protocol": "https",
             "domain": "${envName}.envs.subutai.cloud",
-            "internal-port": "80",
-            "external-port": "80"
+            "internal-port": "443",
+            "external-port": "443"
           }
         ]
       }
@@ -46,7 +46,7 @@
     },
     "peer-criteria": [ 
       {
-        "name": "HTTP-GROUP",
+        "name": "HTTPS-GROUP",
         "max-price": "25"
       }
     ]
