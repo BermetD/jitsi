@@ -11,7 +11,7 @@
         "port-mapping": [
           {
             "protocol": "https",
-            "domain": "${envName}.envs.subutai.cloud",
+            "domain": "${domainName}",
             "internal-port": "443",
             "external-port": "443"
           }
