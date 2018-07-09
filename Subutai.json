@@ -34,7 +34,7 @@
       "environmentName": {
           "description": "Enter the environment name",
           "type": "string",
-          "default": "wp",
+          "default": "jitsi",
           "validation": "[a-zA-Z0-9]+"
       },
       "domainName": {
